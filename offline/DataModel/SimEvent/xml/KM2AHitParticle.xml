@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name="SimEvent">
+
+        <import name="TObject"/>
+
+        <class name="KM2AHitParticle"
+               author="LI Teng"
+               desc="Secondary Particle information">
+
+            <base name="TObject"/>
+
+            <attribute name="xp"
+                       type="float"
+                       desc="hit position x (detector position x)"
+                       init="0.0"/>
+
+            <attribute name="yp"
+                       type="float"
+                       desc="hit position y (detector position y)"
+                       init="0.0"/>
+
+            <attribute name="zp"
+                       type="float"
+                       desc="hit position z (detector position z)"
+                       init="4300"/>
+
+            <attribute name="tp"
+                       type="float"
+                       desc="arrival time"
+                       init="0.0"/>
+
+            <attribute name="theta"
+                       type="float"
+                       desc="primary zenith angle"
+                       init="0.0"/>
+
+            <attribute name="phi"
+                       type="float"
+                       desc="primary azimuthal angle"
+                       init="0.0"/>
+
+            <attribute name="x_drp"
+                       type="float"
+                       desc="dropping core position x"
+                       init="0.0"/>
+
+            <attribute name="y_drp"
+                       type="float"
+                       desc="dropping core position y"
+                       init="0.0"/>
+
+        </class>
+    </package>
+</xdd>

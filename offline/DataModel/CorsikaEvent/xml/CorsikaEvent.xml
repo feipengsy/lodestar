@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name = "CorsikaEvent">
+
+        <import name="Event/EventObject"/>
+        <import name="Event/CorsikaParticle"/>
+
+        <class name = "CorsikaEvent"
+               author = "LI Teng"
+               desc = "Event Class for Corsika input">
+
+            <base name = "EventObject"/>
+
+            <attribute                   
+                  desc="List of secondary particles"
+                  name="particle"
+                  type="std::vector&lt;LHAASO::CorsikaParticle*&gt;"
+                  nonconstaccessor="TRUE"
+            />
+
+        </class>
+    </package>
+</xdd>

@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name = "CorsikaEvent">
+
+        <import name="TObject"/>
+
+        <class name = "CorsikaParticle"
+               author = "LI Teng"
+               desc = "Class description of Corsika input particle">
+
+            <base name = "TObject"/>
+
+            <attribute name = "particle"
+                       type = "int"
+                       desc = "particle id"
+                       init = "0"
+            /> 
+            <attribute name = "generation"
+                       type = "int"
+                       desc = "generation"
+                       init = "0"
+            />
+            <attribute name = "obs_level"
+                       type = "int"
+                       desc = "observation level"
+                       init = "0"
+            />
+            <attribute name = "px"
+                       type = "double"
+                       desc = "momentum in x direction in GeV/c"
+                       init = "0.0"
+            />
+            <attribute name = "py"
+                       type = "double"
+                       desc = "momentum in y direction in GeV/c"
+                       init = "0.0"
+            /> 
+            <attribute name = "pz"
+                       type = "double"
+                       desc = "momentum in z direction in GeV/c"
+                       init = "0.0"
+            /> 
+            <attribute name = "x"
+                       type = "double"
+                       desc = "x coordinate of core location for scattered events in cm"
+                       init = "0.0"
+            /> 
+            <attribute name = "y"
+                       type = "double"
+                       desc = "y coordinate of core location for scattered events in cm"
+                       init = "0.0"
+            /> 
+            <attribute name = "time"
+                       type = "double"
+                       desc = "arrival time"
+                       init = "0.0"
+            /> 
+            <attribute name = "height"
+                       type = "double"
+                       desc = "Height of interaction"
+                       init = "0.0"
+            />            
+            <attribute name = "theta"
+                       type = "double"
+                       desc = "zenith angle "
+                       init = "0.0"
+            />
+            <attribute name = "phi"
+                       type = "double"
+                       desc = "azimuth angle "
+                       init = "0.0"
+            />
+            <attribute name = "theta_deg"
+                       type = "double"
+                       desc = "180.*theta / PI"
+                       init = "0.0"
+            />
+            <attribute name = "phi_deg"
+                       type = "double"
+                       desc = "180.*phi / PI"
+                       init = "0.0"
+            />
+            <attribute name = "p"
+                       type = "double"
+                       desc = "particle energy"
+                       init = "0.0"
+            />
+
+        </class>
+    </package>
+</xdd>

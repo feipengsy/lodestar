@@ -1,0 +1,9 @@
+package CorsikaIO
+
+use SniperKernel v*
+use CorsikaEvent v* DataModel
+
+apply_pattern install_more_includes more=CorsikaIO
+library CorsikaIO *.cc
+apply_pattern linker_library library=CorsikaIO
+

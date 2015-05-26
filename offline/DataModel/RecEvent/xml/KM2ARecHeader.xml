@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name="RecEvent">
+        <import name="Event/HeaderObject"/>
+        <import name="Event/KM2ARecEvent"/>
+
+        <class name="KM2ARecHeader"
+               author="LI"
+               desc="">
+
+            <base name="HeaderObject"/>
+
+            <SmartRelation  type="LHAASO::KM2ARecEvent"
+                            name="event"
+                            desc="SmartRef to the KM2ARecEvent"
+                            nonconstaccessor="TRUE"/>
+
+        </class>
+    </package>
+</xdd>

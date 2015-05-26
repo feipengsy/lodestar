@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+<xdd>
+    <package name="RecEvent">
+
+        <import name="Event/EventObject"/>
+
+        <class name="KM2ARecEvent"
+               author="Teng"
+               desc="">
+
+            <base name="EventObject"/>
+
+            <attribute name="theta_rec"
+                       type="float"
+                       desc="reconstructed zenith angle"
+                       init="0.0"/>
+
+            <attribute name="phi_rec"
+                       type="float"
+                       desc="reconstructed azimuthal angle"
+                       init="0.0"/>
+
+            <attribute name="space_ang"
+                       type="float"
+                       desc="space angle between dropping and reconstructed directions"
+                       init="0.0"/>
+
+            <attribute name="nkg_x"
+                       type="float"
+                       desc="core position x of NKG likelihood fitting"
+                       init="0.0"/>
+
+            <attribute name="nkg_y"
+                       type="float"
+                       desc="core position y of NKG likelihood fitting"
+                       init="0.0"/>
+
+            <attribute name="t0"
+                       type="float"
+                       desc="shower reconstructed time"
+                       init="0.0"/>
+
+            <attribute name="ne"
+                       type="int"
+                       desc="total number of electrons detected by ED"
+                       init="0"/>
+
+            <attribute name="nm"
+                       type="int"
+                       desc="total number of muons detected by MD"
+                       init="0"/>
+
+            <attribute name="shower_age"
+                       type="float"
+                       desc="age"
+                       init="0.0"/>
+
+            <attribute name="shower_size"
+                       type="float"
+                       desc="size of NKG likelihood fitting"
+                       init="0.0"/>
+
+        </class>
+
+    </package>
+</xdd>

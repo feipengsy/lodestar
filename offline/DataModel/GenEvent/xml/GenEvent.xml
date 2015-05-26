@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+<xdd>
+    <package name="GenEvent">
+
+        <import name="Event/EventObject"/>
+        <import name="KAGenParticle"/>
+        <import name="vector" std="TRUE"/>
+
+        <class name="GenEvent"
+            author="Teng LI"
+            desc="">
+
+            <base name="EventObject"/>
+
+            <template name="vector_KAGenParticle" type="std::vector"
+                      desc="Type for GenParticle Collection"
+                      extern="TRUE">
+                <typename type="LHAASO::KAGenParticle*"/>
+            </template>
+
+        </class>
+
+
+    </package>
+</xdd>

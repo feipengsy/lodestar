@@ -1,0 +1,11 @@
+package RootIOStream
+
+use ROOT v* Externals
+use SniperKernel v*
+use EDMUtil v* DataModel
+use BaseEvent v* DataModel
+use RootIOUtil v* DataIO/RootIO
+
+apply_pattern install_more_includes more=RootIOStream
+library RootIOStream *.cc
+apply_pattern linker_library library=RootIOStream

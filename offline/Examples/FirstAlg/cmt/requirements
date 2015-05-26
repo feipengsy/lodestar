@@ -1,0 +1,11 @@
+package FirstAlg
+
+use SniperKernel v*
+use CorsikaEvent v* DataModel
+use SimEvent     v* DataModel
+use MemoryMgr    v* CommonSvc
+
+library FirstAlg *.cc
+apply_pattern linker_library library=FirstAlg
+apply_pattern install_python_modules
+

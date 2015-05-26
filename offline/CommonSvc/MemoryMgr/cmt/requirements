@@ -1,0 +1,11 @@
+package MemoryMgr
+
+use SniperKernel v*
+use DataIOSvc v* DataIO
+use BaseEvent v* DataModel
+use EDMUtil v* DataModel
+
+apply_pattern install_more_includes more=MemoryMgr
+library MemoryMgr *.cc
+apply_pattern linker_library library=MemoryMgr
+apply_pattern install_python_modules

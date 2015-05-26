@@ -1,0 +1,15 @@
+package BaseEvent
+
+branches cmt src Event
+
+use XmlObjDesc v* -no_auto_imports
+use ROOT v* Externals
+
+macro_append EventObject_cintflags "-I$(CMTINSTALLAREA)/include"
+macro_append HeaderObject_cintflags "-I$(CMTINSTALLAREA)/include"
+apply_pattern install_more_includes more=Event
+apply_pattern cint_dictionary files=../Event/*.h
+
+include_dirs $(BASEEVENTROOT)/Event
+library BaseEvent *.cc
+apply_pattern linker_library library=BaseEvent

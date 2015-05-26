@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name="SimEvent">
+
+        <import name="Event/EventObject"/>
+        <import name="Event/KM2AHitParticle.h"/>
+        <import name="vector" std="TRUE"/>
+
+        <class name="KM2ASimEvent"
+               author="LI"
+               desc="">
+
+            <base name="EventObject"/>
+
+            <attribute name="ntrigger"
+                       type="int"
+                       desc="number of triggered detector"
+                       init="0"/>
+
+            <attribute name="hit_particle"
+                       type="std::vector&lt;LHAASO::KM2AHitParticle*&gt;"
+                       desc="particle information (x,y,z,t,theta,phi,x_drp,y_drp,nkg_x,nkg_y)"/>
+
+            <attribute name="nhit"
+                       type="std::vector&lt;int&gt;"
+                       desc="number of hits in each detector"/>
+
+            <method name="addParticle"
+                    desc="add a hit particle"
+                    inline="TRUE"
+                    argList="LHAASO::KM2AHitParticle* value">
+                    <code>  m_hit_particle.push_back(value);  </code>
+            </method>
+
+        </class>
+    </package>
+</xdd>

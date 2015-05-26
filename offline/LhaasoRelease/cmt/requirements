@@ -1,0 +1,10 @@
+package LhaasoRelease
+
+# Data Model
+use DataModelRelease v* DataModel
+
+# XmlObjDesc
+use XmlObjDesc v*
+
+# Simulation
+use SimRelease v* Simulation

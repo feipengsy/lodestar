@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+<xdd>
+    <package name="GenEvent">
+
+        <import name="TObject"/>
+
+        <class name="KAGenParticle"
+            author="Teng LI"
+            desc="">
+
+            <base name="TObject"/>
+
+            <attribute 
+                desc="event number in DATxxxxxx"
+                name="nb_event"
+                init="0"
+                type="int"
+                />
+            <attribute 
+                desc="primary particle ID"
+                name="id_event"
+                init="0"
+                type="int"
+                />
+            <attribute                   
+                desc="primary energy"
+                name="e_event"
+                init="0.0"
+                type="float"
+                />
+            <attribute                   
+                desc="primary zenith angle"
+                name="zen_event"
+                init="0.0"
+                type="float"
+                />
+            <attribute                   
+                desc="primary azimuthal angle"
+                name="azi_event"
+                init="0.0"
+                type="float"
+                />
+            <attribute                   
+                desc="dropping core position x"
+                name="x_drp"
+                init="0.0"
+                type="float"
+                />
+            <attribute                   
+                desc="dropping core position y"
+                name="y_drp"
+                init="0.0"
+                type="float"
+                />
+            <attribute                   
+                desc="photons in shower"
+                name="n_2nd_ph"
+                init="0"
+                type="int"
+                />
+            <attribute                   
+                desc="e+e- in shower"
+                name="n_2nd_el"
+                init="0"
+                type="int"
+                />
+            <attribute                   
+                desc="mu+mu- in shower"
+                name="n_2nd_mu"
+                init="0"
+                type="int"
+                />
+            <attribute                   
+                desc="hits in array"
+                name="n_hit"
+                init="0"
+                type="int"
+                />
+
+        </class>
+
+
+    </package>
+</xdd>

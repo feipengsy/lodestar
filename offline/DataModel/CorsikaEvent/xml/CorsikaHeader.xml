@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name = "CorsikaEvent">
+
+        <import name="Event/HeaderObject"/>
+        <import name="Event/CorsikaEvent"/>
+
+        <class name="CorsikaHeader"
+               author="LI Teng"
+               desc="Header Class for Corsika input">
+
+            <base name="HeaderObject"/>
+            <SmartRelation type="LHAASO::CorsikaEvent"
+                           name="event"
+                           desc="Smart pointer to the CorsicaEvent"
+                           nonconstaccessor="TRUE"/>
+
+        </class>
+    </package>
+</xdd>

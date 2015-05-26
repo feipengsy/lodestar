@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name="SimEvent">
+        <import name="Event/HeaderObject"/>
+        <import name="Event/KM2ASimEvent"/>
+
+        <class name="KM2ASimHeader"
+               author="LI"
+               desc="">
+
+            <base name="HeaderObject"/>
+
+            <SmartRelation  type="LHAASO::KM2ASimEvent"
+                            name="event"
+                            desc="SmartRef to the KM2ASimEvent"
+                            nonconstaccessor="TRUE"/>
+
+        </class>
+    </package>
+</xdd>

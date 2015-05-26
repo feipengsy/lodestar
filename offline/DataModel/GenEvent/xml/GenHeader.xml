@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE xdd SYSTEM "xdd.dtd">
+
+<xdd>
+    <package name="GenEvent">
+        <import name="Event/HeaderObject"/>
+        <import name="Event/GenEvent"/>
+
+        <class name="GenHeader"
+               author="LI Teng"
+               desc="Gen Header Class">
+
+            <base name="HeaderObject"/>
+            
+            <relation  name="GenEvent"
+                       type="LHAASO::GenEvent"
+                       desc="smart pointer to the GenEvent"/>
+        </class>
+    </package>
+</xdd>

@@ -1,0 +1,10 @@
+package DataIOSvc
+
+use SniperKernel v*
+use CorsikaIO v* DataIO
+use RootIOStream v* DataIO/RootIO
+
+apply_pattern install_more_includes more=DataIOSvc
+library DataIOSvc *.cc
+apply_pattern linker_library library=DataIOSvc
+apply_pattern install_python_modules

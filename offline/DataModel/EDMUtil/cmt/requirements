@@ -1,0 +1,13 @@
+package EDMUtil
+
+use ROOT v* Externals
+use BaseEvent v* DataModel
+use SniperKernel v*
+
+apply_pattern install_more_includes more=EDMUtil
+apply_pattern cint_dictionary files=../EDMUtil/UniqueIDTable.h
+apply_pattern cint_dictionary files=../EDMUtil/SmartRef.h
+
+include_dirs $(EDMUTILROOT)/EDMUtil
+library EDMUtil *.cc
+apply_pattern linker_library library=EDMUtil

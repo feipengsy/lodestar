@@ -1,0 +1,7 @@
+package DataModelRelease
+
+use BaseEvent   v* DataModel
+use GenEvent    v* DataModel
+use RecEvent    v* DataModel
+use SimEvent    v* DataModel
+

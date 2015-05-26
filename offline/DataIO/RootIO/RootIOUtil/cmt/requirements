@@ -1,0 +1,9 @@
+package RootIOUtil
+
+use ROOT v* Externals
+use SniperKernel v*
+use EDMUtil v* DataModel
+
+apply_pattern install_more_includes more=RootIOUtil
+library RootIOUtil *.cc
+apply_pattern linker_library library=RootIOUtil
