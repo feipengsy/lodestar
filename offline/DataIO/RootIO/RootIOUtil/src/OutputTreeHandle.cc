@@ -5,6 +5,7 @@
 #include "TTree.h"
 #include "TFile.h"
 #include "TProcessID.h"
+#include <iostream>
 
 OutputTreeHandle::OutputTreeHandle(const std::string& path, const std::string& className, const std::string& treeName, bool withTable)
     : m_path(path)
@@ -56,7 +57,7 @@ void OutputTreeHandle::startFile(TFile* file)
     RootInterface::createDirectory(m_path, file);
     std::string treeTitle = std::string("Tree at ") + m_path + " for " + m_className.substr(m_className.rfind("::")+2);
     m_tree = new TTree(m_treeName.c_str(), treeTitle.c_str());
-    m_tree->Branch(m_treeName.c_str(), m_className.c_str(), &m_addr, 32000, 0);
+    m_tree->Branch(m_treeName.c_str(), m_className.c_str(), &m_addr, 32000, 99);
 }
 
 void OutputTreeHandle::setAddress(void* addr)
@@ -85,7 +86,7 @@ void OutputTreeHandle::finalize()
     }
     if (-1 != m_entry) {
         m_file->cd(m_path.c_str());
-        m_tree->Write();
+        m_tree->Write(NULL,TObject::kOverwrite);
     }
 }
 
