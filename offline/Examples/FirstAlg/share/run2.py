@@ -14,10 +14,10 @@ bufMgr = task.createSvc("DataBufferMgr")
 import DataIOSvc
 
 iSvc = task.createSvc("DataInputSvc/InputSvc")
-iSvc.property("InputStream").set({"/Event/CorsikaEvent" : "test.root"})
+iSvc.property("InputStream").set({"/Event/CorsikaEvent" : "csk.root"})
 
 oSvc = task.createSvc("DataOutputSvc/OutputSvc")
-oSvc.property("OutputStream").set({"/Event/CorsikaEvent" : "test2.root"})
+oSvc.property("OutputStream").set({"/Event/CorsikaEvent" : "csk2.root"})
 
 task.setEvtMax(-1)
 task.show()

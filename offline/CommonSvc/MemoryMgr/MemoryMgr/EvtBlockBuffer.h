@@ -18,11 +18,10 @@ class EvtBlockBuffer : public DataBuffer<EvtDataBlock> {
         bool adopt(HeaderObject* header);
 
     private:
-        void readNext(DataInputSvc* iSvc);
+        bool readNext(DataInputSvc* iSvc);
 
     private:
         int m_sizeLimit;
-        EvtDataBlock* m_beyond;
         bool m_init;
 };
 

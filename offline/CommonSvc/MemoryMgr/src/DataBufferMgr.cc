@@ -12,6 +12,8 @@ DECLARE_SERVICE(DataBufferMgr);
 
 DataBufferMgr::DataBufferMgr(const std::string& name)
     : SvcBase(name)
+    , m_beginIcdt(0)
+    , m_endIcdt(0)
 {
     declProp("BufferSize", m_sizeLimit = 1);
 }
@@ -29,7 +31,7 @@ bool DataBufferMgr::initialize()
     dms->regist("/Event", new EvtBlockBuffer(m_sizeLimit));
 
     if ( task->find("InputSvc") != 0 ) {
-        IIncidentHandler* m_beginIcdt = new BeginEvtHdl(task);
+        m_beginIcdt = new BeginEvtHdl(task);
         if ( task->isTop() ) {
             m_beginIcdt->regist("BeginEvent");
         }
@@ -38,7 +40,7 @@ bool DataBufferMgr::initialize()
         }
     }
 
-    IIncidentHandler* m_endIcdt = new EndEvtHdl(task);
+    m_endIcdt = new EndEvtHdl(task);
     if ( task->isTop() ) {
         m_endIcdt->regist("EndEvent");
     }
@@ -53,7 +55,7 @@ bool DataBufferMgr::initialize()
 
 bool DataBufferMgr::finalize()
 {
-    delete m_beginIcdt;
+    if (m_beginIcdt) delete m_beginIcdt;
     delete m_endIcdt;
 
     LogDebug << "Finalized Sucessfully." << std::endl;
