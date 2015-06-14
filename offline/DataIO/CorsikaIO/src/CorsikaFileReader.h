@@ -10,11 +10,14 @@
 #define EVTE 1163155013
 #define EVHW 1464358469
 
+extern double PI;
+
 namespace LHAASO {
     class CorsikaHeader;
 }
 class CskRunBuffer;
 class CskEventBuffer;
+class CskParticleBuffer;
 
 class CorsikaFileReader {
 
@@ -33,11 +36,12 @@ class CorsikaFileReader {
         bool readLongPara();
         bool readReducedEventHeader();
         bool readParticle();
+        void calculateParticle(CskParticleBuffer* part);
         bool readSepSign();
         bool read(void* addr, char option, int size);
         bool seek(int size, int option);
         bool handleBlockOverflow();
-        int  caculateSep();
+        int  calculateSep();
 
     private:
         std::vector<std::string> m_file;

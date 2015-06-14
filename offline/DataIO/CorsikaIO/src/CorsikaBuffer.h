@@ -62,6 +62,12 @@ struct CskParticleBuffer {
 
 struct CskEventBuffer {  
 
+    ~CskEventBuffer() {
+        for (std::vector<CskParticleBuffer*>::iterator it = Particle.begin(); it != Particle.end(); ++it) {
+            delete *it;
+        }
+    }
+
     int event_number;
     int particle;
     float energy;

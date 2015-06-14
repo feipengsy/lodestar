@@ -1,6 +1,10 @@
 #include "CorsikaFileReader.h"
 #include "CorsikaBuffer.h"
 #include "Event/CorsikaHeader.h"
+#include <iostream>
+#include <cmath>
+
+double PI =4. * atan(1.);
 
 CorsikaFileReader::CorsikaFileReader(const std::vector<std::string>& filenames)
     : m_file(filenames)
@@ -36,11 +40,11 @@ bool CorsikaFileReader::readNext()
 
     // Read event header
     bool ok;
-    if (0 == this->caculateSep()) {
+    if (0 == this->calculateSep()) {
         ok = this->readSepSign();
         if (!ok) return false;
     }
-    switch (this->caculateSep()) {
+    switch (this->calculateSep()) {
 
         // Normal header
         case EVTH:    ok = readEventHeader();
@@ -64,7 +68,7 @@ bool CorsikaFileReader::readNext()
     while (cont) {
         ok = this->readSepSign();
         if (!ok) return false;
-        switch (this->caculateSep()) {
+        switch (this->calculateSep()) {
             
             // Already passed particle section, record last words and jump back later
             case EVTE:
@@ -73,7 +77,7 @@ bool CorsikaFileReader::readNext()
             case EVHW:    cont = false;
                           break;
             // Skip 6 words and check again
-            case 0:       while ( this->caculateSep() == 0 ) {
+            case 0:       while ( this->calculateSep() == 0 ) {
                              this->seek(24, SEEK_CUR);
                              this->readSepSign();
                           }
@@ -84,7 +88,7 @@ bool CorsikaFileReader::readNext()
                           if (!ok) return false;
         }
     }
-    if (this->caculateSep() == EVTE) {
+    if (this->calculateSep() == EVTE) {
         ok = this->readEventEnd() && this->readLongPara();
         if (!ok) return false;
         m_sepBuffer = 0;
@@ -103,6 +107,9 @@ LHAASO::CorsikaHeader* CorsikaFileReader::get()
     m_curEvent->setEventID(m_eventBuffer->event_number);
     
     LHAASO::CorsikaEvent* event = new LHAASO::CorsikaEvent;
+    event->setPhi(m_eventBuffer->phi);
+    event->setTheta(m_eventBuffer->theta);
+    event->setEnergy(m_eventBuffer->energy);
     m_curEvent->setEvent(event);
     for (std::vector<CskParticleBuffer*>::iterator it = m_eventBuffer->Particle.begin(); it != m_eventBuffer->Particle.end(); ++it) {
         LHAASO::CorsikaParticle* particle = new LHAASO::CorsikaParticle;
@@ -145,7 +152,7 @@ bool CorsikaFileReader::nextFile()
         delete m_runBuffer;
     }
     this->readSepSign();
-    if (this->caculateSep() == RUNH) {
+    if (this->calculateSep() == RUNH) {
         m_runBuffer = new CskRunBuffer;
         m_sepBuffer = 0;
         return this->readRunHeader();
@@ -246,6 +253,7 @@ bool CorsikaFileReader::readLongPara()
 
 bool CorsikaFileReader::readReducedEventHeader()
 {
+    std::cout << "reduced" << std::endl;
     bool ok = ( 
         // Read event number and particle id
         this->read(&m_eventBuffer->event_number, 'i', 2)         &&
@@ -265,7 +273,7 @@ bool CorsikaFileReader::readParticle()
     m_eventBuffer->Particle.push_back(part);
     
     bool ok;
-    switch( caculateSep() ) {
+    switch( (int)m_sepBuffer ) {
 
         case 9999:   // particles from interaction stack
             ok = ( 
@@ -281,6 +289,7 @@ bool CorsikaFileReader::readParticle()
 
             part->inter = 1;
             //part->mother = 0;
+            if (ok) this->calculateParticle(part);
 
             return ok;
 
@@ -288,7 +297,7 @@ bool CorsikaFileReader::readParticle()
             //part->mother = 0;
             part->inter = 0;
 
-            int i = caculateSep();
+            int i = (int)m_sepBuffer;
 
             part->particle = i / 1000;        // Read the particles data
             i = i - part->particle * 1000;
@@ -309,27 +318,60 @@ bool CorsikaFileReader::readParticle()
                 part->mother->generation = part->generation;
                 part->mother->obs_level = part->obs_level;
                 */
-
-                float mpx = 0;
+                float* mpx = new float[10];
                 ok = (
-                    this->read(&mpx, 'f', 6)  &&
-                    this->read(&mpx, 'f', 1)
+                    this->read(mpx, 'f', 6)  &&
+                    this->readSepSign()
                 );
+                delete mpx;
                 if (!ok) return false;
 
-                /*
-                i = ftoi( f ) ;
-                part->particle = i / 1000;        // Read the particles data/
+                i = (int)m_sepBuffer;
+
+                part->particle = i / 1000;        // Read the particles data
                 i = i - part->particle * 1000;
                 part->generation = i / 10;
                 i = i- part->generation * 10;
                 part->obs_level = i;
-                */
             }
 
         ok = this->read(&part->px, 'f', 6);
-        return ok; 
+        if (ok) this->calculateParticle(part);
+        return ok;
     } 
+}
+
+void CorsikaFileReader::calculateParticle(CskParticleBuffer* part)
+{
+    float pr;
+    if ( part->inter ) {
+        pr = sin ( part->theta ) * part->p;
+        part->px = pr * cos ( part->phi );
+        part->py = pr * sin ( part->phi );
+        part->pz = cos( part->theta ) * part->p;
+        part->theta_deg = 180. * (part->theta / PI);
+        part->phi_deg = 180. * (part->phi / PI);
+    }
+    else {
+        pr = sqrt( part->px*part->px + part->py*part->py );
+        part->p = sqrt( part->px*part->px + part->py*part->py + part->pz*part->pz );
+        part->theta = atan ( pr / part->pz );
+        part->theta_deg = 180. * (part->theta / PI);
+        part->phi   = PI + atan2( -part->py , -part->px );
+        part->phi_deg = 180. * (part->phi / PI);
+
+        /*
+        if ( part->mother ) {
+            moth = part->mother;
+            pr = sqrt( moth->px*moth->px + moth->py*moth->py );
+            moth->p = sqrt( moth->px*moth->px + moth->py*moth->py + moth->pz*moth->pz );
+            moth->theta = atan ( pr / moth->pz );
+            moth->theta_deg = 180. * (moth->theta / PI);
+            moth->phi   = PI + atan2( -moth->py , -moth->px );
+            moth->phi_deg = 180. * (moth->phi / PI);
+        }
+        */
+    }
 }
 
 bool CorsikaFileReader::readSepSign()
@@ -393,7 +435,7 @@ bool CorsikaFileReader::handleBlockOverflow()
     return true;
 }
 
-int CorsikaFileReader::caculateSep()
+int CorsikaFileReader::calculateSep()
 {
     return *((int*)&m_sepBuffer);
 }
