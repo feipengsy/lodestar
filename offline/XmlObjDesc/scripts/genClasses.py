@@ -274,7 +274,7 @@ class genClasses(genSrcUtils.genSrcUtils):
       if not self.tools.isFundamentalT(att['type']) and not self.tools.isPointerT(att['type']): ret += '&'
       ret += ' '
       what = ''
-    s +=  '  ' + ret + scopeName + what + metName + '(' + param + ')' + constF
+    s +=  '' + ret + scopeName + what + metName + '(' + param + ')' + constF
     if ( not scopeName ) : # this is a declaration
       if not what and att['virtualaccessor'] == 'PURE' : s += ' = 0'
       s += ';\n\n'

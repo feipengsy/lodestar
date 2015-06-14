@@ -254,7 +254,7 @@ class genSrcUtils(importUtils.importUtils):
         relAtt = rel['attrs']
         if relAtt['access'] == modifier.upper() or modifier == 'all':
           relType = 'SmartRef'
-          s += '  %s %s // %s\n' % (relType.ljust(maxLenTypNam[0]),
+          s += '  %s %s //|| %s\n' % (relType.ljust(maxLenTypNam[0]),
                                         ('m_%s;'%relAtt['name']).ljust(maxLenTypNam[1]), relAtt['desc'])
     return s
 #--------------------------------------------------------------------------------
