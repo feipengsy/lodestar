@@ -13,12 +13,48 @@
 
             <base name = "EventObject"/>
 
+            <destructor desc = "destructor">
+                <code>
+  for (std::vector&lt;LHAASO::CorsikaParticle*&gt;::iterator it = m_particle.begin(); it != m_particle.end(); ++it) {
+    delete *it;
+  }
+                </code>
+            </destructor>
+
             <attribute                   
                   desc="List of secondary particles"
                   name="particle"
                   type="std::vector&lt;LHAASO::CorsikaParticle*&gt;"
                   nonconstaccessor="TRUE"
             />
+
+            <attribute
+                 desc=""
+                 name="theta"
+                 type="float"
+                 init="0.0"
+            />
+
+            <attribute
+                 desc=""
+                 name="phi"
+                 type="float"
+                 init="0.0"
+            />
+
+            <attribute
+                 desc=""
+                 name="energy"
+                 type="float"
+                 init="0.0"
+            />
+
+            <method name="addParticle"
+                    desc="add a CorsikaParticle"
+                    inline="TRUE"
+                    argList="LHAASO::CorsikaParticle* value">
+                <code>  m_particle.push_back(value);  </code>
+            </method>
 
         </class>
     </package>

@@ -14,10 +14,18 @@
 
             <base name="EventObject"/>
 
-            <attribute name="ntrigger"
-                       type="int"
-                       desc="number of triggered detector"
-                       init="0"/>
+            <destructor desc = "destructor">
+                <code>
+  for (std::vector&lt;LHAASO::KM2AHitParticle*&gt;::iterator it = m_hit_particle.begin(); it != m_hit_particle.end(); ++it) {
+    delete *it;
+  }
+                </code>
+            </destructor>
+
+            <attribute name="e_event"
+                       type="float"
+                       desc="primary event energy"
+                       init="0.0"/>
 
             <attribute name="hit_particle"
                        type="std::vector&lt;LHAASO::KM2AHitParticle*&gt;"
@@ -26,6 +34,24 @@
             <attribute name="nhit"
                        type="std::vector&lt;int&gt;"
                        desc="number of hits in each detector"/>
+
+            <attribute name="theta"
+                       type="float"
+                       desc="primary zenith angle"
+                       init="0.0"/>
+
+            <attribute name="phi"
+                       type="float"
+                       desc="primary azimuthal angle"
+                       init="0.0"/>
+
+            <attribute name="x_drp"
+                       type="float"
+                       desc="dropping core position x"/>
+
+            <attribute name="y_drp"
+                       type="float"
+                       desc="dropping core position y"/>
 
             <method name="addParticle"
                     desc="add a hit particle"

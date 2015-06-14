@@ -11,6 +11,11 @@
 
             <base name="EventObject"/>
 
+            <attribute name="ntrigger"
+                       type="int"
+                       desc="number of triggered detector"
+                       init="0"/>
+
             <attribute name="theta_rec"
                        type="float"
                        desc="reconstructed zenith angle"

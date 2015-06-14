@@ -150,6 +150,9 @@ void SmartRef::SetBranchID(Short_t value)
 
 EventObject* SmartRef::GetObject()
 {
+  //std::cout << "uid: " << GetUniqueID() << std::endl;
+  //std::cout << "pid: " << m_pid << std::endl;
+  //std::cout << "entry: " << m_entry << std::endl;
   // Return a pointer to the referenced object.
   if (!this->HasObject()) return 0;
 
@@ -175,6 +178,7 @@ EventObject* SmartRef::GetObject()
   InputElementKeeper* keeper = InputElementKeeper::get();
   if (!keeper) return 0;
   TBranch* branch =  keeper->searchBranch(uid, m_pid->GetTitle());
+  //std::cout << "branch: " << branch << std::endl;
   if (!branch) return 0;
   // Load the referenced object
   void* addr = 0;

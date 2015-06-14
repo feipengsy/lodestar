@@ -12,6 +12,46 @@
 
             <base name="TObject"/>
 
+            <attribute name="idet"
+                       type="int"
+                       desc="detector id"
+                       init="0"/>
+
+            <attribute name="idp"
+                       type="int"
+                       desc="particle id"
+                       init="0"/>
+
+            <attribute name="ixp"
+                       type="int"
+                       desc=" detector id(x direction)"
+                       init="0"/>
+
+            <attribute name="iyp"
+                       type="int"
+                       desc=" detector id(y direction)"
+                       init="0"/>
+
+            <attribute name="ixm"
+                       type="int"
+                       desc="module id(x direction)"
+                       init="0"/>
+
+            <attribute name="iym"
+                       type="int"
+                       desc="module id(y direction)"
+                       init="0"/>
+
+            <attribute name="ptot"
+                       type="float"
+                       desc="particle energy"
+                       init="0.0"/>
+
+            <attribute name="npun"
+                       type="int"
+                       desc="number of punch-through particles"
+                       init="0"/>
+
             <attribute name="xp"
                        type="float"
                        desc="hit position x (detector position x)"
@@ -32,26 +72,6 @@
                        desc="arrival time"
                        init="0.0"/>
 
-            <attribute name="theta"
-                       type="float"
-                       desc="primary zenith angle"
-                       init="0.0"/>
-
-            <attribute name="phi"
-                       type="float"
-                       desc="primary azimuthal angle"
-                       init="0.0"/>
-
-            <attribute name="x_drp"
-                       type="float"
-                       desc="dropping core position x"
-                       init="0.0"/>
-
-            <attribute name="y_drp"
-                       type="float"
-                       desc="dropping core position y"
-                       init="0.0"/>
-
-        </class>
+       </class>
     </package>
 </xdd>

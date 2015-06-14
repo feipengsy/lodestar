@@ -6,6 +6,7 @@ use XmlObjDesc v* -no_auto_imports
 use SniperKernel v*
 use ROOT v* Externals
 use BaseEvent v* DataModel
+use EDMUtil v* DataModel
 
 macro_append XODflags " -n LHAASO "
 macro_append KM2ARecEvent_cintflags "-I$(CMTINSTALLAREA)/include"

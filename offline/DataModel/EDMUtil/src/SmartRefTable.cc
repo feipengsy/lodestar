@@ -2,6 +2,7 @@
 #include "EDMUtil/UniqueIDTable.h"
 #include "TFile.h"
 #include "TTree.h"
+#include <iostream>
 
 SmartRefTableImpl::SmartRefTableImpl()
     : m_TreeIDs(0)
