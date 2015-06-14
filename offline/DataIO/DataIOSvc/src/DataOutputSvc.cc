@@ -1,3 +1,9 @@
+/*********************************************************************************
+  *FileName:    DataOutputSvc.cc
+  *Author:      Teng
+  *Date:        2015.5.26
+  *Description: DataOutputSvc implementation
+**********************************************************************************/
 #include "DataIOSvc/DataOutputSvc.h"
 #include "DataIOSvc/IOutputStream.h"
 #include "RootIOStream/RootOutputStream.h"

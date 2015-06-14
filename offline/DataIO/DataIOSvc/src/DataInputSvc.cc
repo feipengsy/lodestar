@@ -1,3 +1,9 @@
+/*********************************************************************************
+  *FileName:    DataInputSvc.cc
+  *Author:      Teng
+  *Date:        2015.5.26
+  *Description: DataInputSvc implementation
+**********************************************************************************/
 #include "DataIOSvc/DataInputSvc.h"
 #include "DataIOSvc/IInputStream.h"
 #include "SniperKernel/SvcFactory.h"
@@ -78,7 +84,7 @@ IInputStream* DataInputSvc::createInputStream(const std::string& path, const std
         return new RootInputStream(path, files);
     }
 
-    if (getLowerSuffix(files[0]) == "corsika") {
+    if (getLowerSuffix(files[0]) == "part") {
         LogDebug << "Creating CorsikaInputStream for path: " << path
                  << std::endl;
         return new CorsikaInputStream(files);
