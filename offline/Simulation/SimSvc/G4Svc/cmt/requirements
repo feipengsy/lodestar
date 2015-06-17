@@ -1,0 +1,10 @@
+package G4Svc
+
+use SniperPolicy  v*
+use SniperKernel  v*
+use DetSimPolicy  v*  Simulation/DetSim
+
+apply_pattern install_more_includes more="G4Svc"
+
+library G4Svc *.cc
+apply_pattern linker_library library=G4Svc
