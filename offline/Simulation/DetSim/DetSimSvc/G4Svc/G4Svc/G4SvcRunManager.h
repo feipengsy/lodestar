@@ -9,9 +9,9 @@ class G4SvcRunManager : public G4RunManager {
         G4SvcRunManager();
         ~G4SvcRunManager();
  
-        bool initializeRun();
+        bool RunInitialize();
         bool SimulateEvent(int i);
-        bool finalizeRun();
+        bool RunFinalize();
 };
 
 #endif

@@ -37,5 +37,5 @@ bool G4SvcRunManager::SimulateEvent(int i)
 bool G4SvcRunManager::RunTerminate()
 {
     this->RunTermination();
-    eturn true;
+    return true;
 }
