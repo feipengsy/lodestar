@@ -18,6 +18,8 @@ class DetSimAlg : public AlgBase {
         bool finalize();
 
     private:
+        void initG4Settings();
+
         int               m_iEvt;
         IG4Svc*           m_g4Svc;
         IDetSimFactory*   m_detSimFactory;

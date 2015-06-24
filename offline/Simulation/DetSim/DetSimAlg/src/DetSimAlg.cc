@@ -32,7 +32,7 @@ bool DetSimAlg::initialize()
     }
     m_detSimFactory = detSimFactory.data();
 
-    this->initG4Setting();
+    this->initG4Settings();
     if (!m_g4Svc->G4Init()) {
         return false;
     }
@@ -61,7 +61,29 @@ bool DetSimAlg::finalize()
     return true;
 }
 
-void DetSimAlg::initG4Setting()
+void DetSimAlg::initG4Settings()
 {
+    G4VUserDetectorConstruction* detector = det_factory->createDetectorConstruction();
+    run_manager->SetUserInitialization(detector);
 
+    G4VUserPhysicsList* physics = det_factory->createPhysicsList();
+    run_manager->SetUserInitialization(physics);
+
+    G4VUserPrimaryGeneratorAction* gen_action = det_factory->createPrimaryGenerator();
+    run_manager->SetUserAction(gen_action);
+
+    G4UserRunAction* run_action = det_factory->createRunAction();
+    run_manager->SetUserAction(run_action);
+
+    G4UserEventAction* event_action = det_factory->createEventAction();
+    run_manager->SetUserAction(event_action);
+
+    G4UserStackingAction* stacking_action = det_factory->createStackingAction();
+    run_manager->SetUserAction(stacking_action);
+
+    G4UserTrackingAction* tracking_action = det_factory->createTrackingAction();
+    run_manager->SetUserAction(tracking_action);
+
+    G4UserSteppingAction* stepping_action = det_factory->createSteppingAction();
+    run_manager->SetUserAction(stepping_action);
 }
